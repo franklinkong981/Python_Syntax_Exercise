@@ -15,7 +15,19 @@ def convert_temp(unit_in, unit_out, temp):
       convert_temp("f", "c", 212) => 100.0
     """
 
-    # YOUR CODE HERE
+    if unit_in != "f" and unit_in != "c":
+        return f"Invalid unit {unit_in}"
+    elif unit_out != "f" and unit_out != "c":
+        return f"Invalid unit {unit_out}"
+    elif (unit_in == "f" and unit_out == "f") or (unit_in == "c" and unit_out == "c"):
+        # Both are in either fahrenheit or celsius, so just return the original temp.
+        return float(temp)
+    elif unit_in == "f" and unit_out == "c":
+        # temp is in fahrenheit. Convert to celsius
+        return 5 / 9 * temp - 160 / 9
+    else:
+        # temp is in celsius. Convert to fahrenheit
+        return 9 / 5 * temp + 32
 
 
 print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
